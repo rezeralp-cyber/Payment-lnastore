@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran - LNASTORE</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #5B4FCF;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    .header {
+      background: #4A3FBF;
+      text-align: center;
+      padding: 28px 20px 24px;
+    }
+    .header h1 { font-size: 42px; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+    .header p { color: rgba(255,255,255,0.85); font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .section { background: #6C5FD8; margin: 14px 12px; border-radius: 16px; padding: 20px 18px; }
+    .method-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .method-icon { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; flex-shrink: 0; display: grid; place-items: center; }
+    .method-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .method-name { font-size: 24px; font-weight: 800; color: #fff; }
+    .nomor-label { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 8px; }
+    .number-box {
+      background: #3D2FA8; border-radius: 10px;
+      padding: 14px 16px; display: flex; align-items: center;
+      justify-content: space-between; gap: 10px; margin-bottom: 12px;
+    }
+    .number-val { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+    .salin-btn {
+      background: #5B4FCF; color: #fff; border: none; border-radius: 8px;
+      padding: 8px 18px; font-size: 14px; font-weight: 700; cursor: pointer;
+      white-space: nowrap; font-family: inherit; transition: background .2s;
+    }
+    .salin-btn:hover { background: #7B6FEF; }
+    .salin-btn.copied { background: #22C55E; }
+    .notice { color: #fff; font-size: 13px; font-weight: 800; text-transform: uppercase; text-align: center; }
+    .kirim-btn {
+      display: block; width: calc(100% - 24px); margin: 6px 12px 0;
+      background: #25D366; color: #fff; border: none; border-radius: 14px;
+      padding: 18px; font-size: 17px; font-weight: 800; cursor: pointer;
+      font-family: inherit; transition: background .2s;
+    }
+    .kirim-btn:hover { background: #1EB857; }
+    .toast {
+      position: fixed; bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #22C55E; color: #fff; padding: 12px 24px;
+      border-radius: 30px; font-weight: 700; font-size: 14px;
+      transition: transform .3s; z-index: 999; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PEMBAYARAN</h1>
+  <p>BY LNASTORE</p>
+</div>
+
+<!-- DANA -->
+<div class="section">
+  <div class="method-header">
+    <div class="method-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/200px-Logo_dana_blue.svg.png" alt="DANA" onerror="this.src='https://placehold.co/48x48/118EEA/fff?text=DANA'"/>
+    </div>
+    <div class="method-name">Dana</div>
+  </div>
+  <div class="nomor-label">Nomor Dana :</div>
+  <div class="number-box">
+    <span class="number-val">082123154354</span>
+    <button class="salin-btn" onclick="salin(this,'082123154354')">Salin</button>
+  </div>
+  <div class="notice">Jika sudah melakukan transfer mohon<br>kirim bukti pembayaran</div>
+</div>
+
+<!-- GOPAY -->
+<div class="section">
+  <div class="method-header">
+    <div class="method-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/200px-Gopay_logo.svg.png" alt="GoPay" onerror="this.src='https://placehold.co/48x48/00AED6/fff?text=GP'"/>
+    </div>
+    <div class="method-name">GoPay</div>
+  </div>
+  <div class="nomor-label">Nomor Gopay :</div>
+  <div class="number-box">
+    <span class="number-val">082123154354</span>
+    <button class="salin-btn" onclick="salin(this,'082123154354')">Salin</button>
+  </div>
+  <div class="notice">Jika sudah melakukan transfer mohon<br>kirim bukti pembayaran</div>
+</div>
+
+<!-- SHOPEEPAY -->
+<div class="section">
+  <div class="method-header">
+    <div class="method-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/ShopeePay.svg/200px-ShopeePay.svg.png" alt="ShopeePay" onerror="this.src='https://placehold.co/48x48/EE4D2D/fff?text=SP'"/>
+    </div>
+    <div class="method-name">ShopeePay</div>
+  </div>
+  <div class="nomor-label">Nomor ShopeePay :</div>
+  <div class="number-box">
+    <span class="number-val">082123154354</span>
+    <button class="salin-btn" onclick="salin(this,'082123154354')">Salin</button>
+  </div>
+  <div class="notice">Jika sudah melakukan transfer mohon<br>kirim bukti pembayaran</div>
+</div>
+
+<!-- SEABANK -->
+<div class="section">
+  <div class="method-header">
+    <div class="method-icon" style="background:#1A3C6E; padding:6px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/SeaBank_logo.svg/200px-SeaBank_logo.svg.png" alt="SeaBank" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'color:#fff;font-size:11px;font-weight:800;\'>SEA\nBANK</span>'; this.parentElement.style.background='#1A3C6E'; this.parentElement.style.textAlign='center'; this.parentElement.style.lineHeight='1.2'; this.parentElement.style.whiteSpace='pre';"/>
+    </div>
+    <div class="method-name">SeaBank</div>
+  </div>
+  <div class="nomor-label">Nomor Rekening SeaBank :</div>
+  <div class="number-box">
+    <span class="number-val">901052754880</span>
+    <button class="salin-btn" onclick="salin(this,'901052754880')">Salin</button>
+  </div>
+  <div class="notice">Jika sudah melakukan transfer mohon<br>kirim bukti pembayaran</div>
+</div>
+
+<!-- QRIS -->
+<div class="section">
+  <div class="method-header">
+    <div class="method-icon" style="background:#fff; padding:4px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/200px-Logo_QRIS.svg.png" alt="QRIS" onerror="this.src='https://placehold.co/48x48/cc0000/fff?text=QRIS'"/>
+    </div>
+    <div class="method-name">QRIS</div>
+  </div>
+  <div class="nomor-label">Scan QRIS di bawah untuk membayar:</div>
+  <div style="border-radius:12px; overflow:hidden; margin-bottom:12px;">
+    <img src="https://tmpfiles.org/dl/wnws5xuGHQ7E/undefined.jpg"
+      alt="QRIS LNASTORE"
+      style="width:100%; display:block; border-radius:12px;"
+      onerror="this.style.display='none'; document.getElementById('qr-error').style.display='block'"/>
+    <div id="qr-error" style="display:none; background:#fff; border-radius:12px; padding:24px; text-align:center; color:#c00; font-weight:700;">
+      Gambar QRIS gagal dimuat.<br>Coba refresh halaman.
+    </div>
+  </div>
+  <div class="notice">Jika sudah melakukan transfer mohon<br>kirim bukti pembayaran</div>
+</div>
+
+<!-- KIRIM BUKTI -->
+<button class="kirim-btn" onclick="kirimBukti()">📲 Kirim Bukti Pembayaran</button>
+
+<div class="toast" id="toast">✅ Disalin!</div>
+
+<script>
+  function salin(btn, val) {
+    navigator.clipboard.writeText(val).catch(() => {
+      const el = document.createElement('textarea');
+      el.value = val; document.body.appendChild(el);
+      el.select(); document.execCommand('copy');
+      document.body.removeChild(el);
+    });
+    const orig = btn.textContent;
+    btn.textContent = 'Disalin!'; btn.classList.add('copied');
+    showToast('✅ ' + val + ' disalin!');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+  function kirimBukti() {
+    window.open('https://wa.me/6282123154354?text=Halo%20LNASTORE%2C%20saya%20sudah%20melakukan%20pembayaran.%20Berikut%20bukti%20transfernya%3A', '_blank');
+  }
+</script>
+</body>
+</html>
